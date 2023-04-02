@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import "./searchLocation.css";
 import context from "../../common/context/context";
+import Loading from "../loading/Loading";
 
 const api = {
      key: "2c2b2ba0c17984e35d7ff941ea19bcea",
@@ -11,17 +12,19 @@ const api = {
 const SearchLocation = () => {
      const consumer = React.useContext(context);
      const dispatch = consumer[1];
-     const currentTemperature = consumer[0].currentTemperature;
+     const [loading, setLoading] = useState(false);
      const [searchText, setSearchText] = useState("");
+     const inputRef = useRef();
 
      React.useEffect(() => {
           handleGetDataWeather({ key: "Enter" }, "Saigon");
      }, []);
 
-     const handleGetDataWeather = (e, init) => {
+     const handleGetDataWeather = async (e, init) => {
           if (e.key === "Enter") {
-               console.log(searchText);
-               fetch(
+               inputRef.current.blur();
+               setLoading(true);
+               await fetch(
                     `${api.base}weather?q=${init || searchText}&appid=${
                          api.key
                     }`
@@ -42,16 +45,22 @@ const SearchLocation = () => {
                                         payload: res,
                                    });
                               });
+
                          //console.log(res.main.temp - 273.15);
+                    })
+                    .finally(() => {
+                         setLoading(false);
                     });
           }
      };
 
      return (
           <div id="searchLocation">
+               {loading && <Loading />}
                <div className="searchLocation__input">
                     <input
                          value={searchText}
+                         ref={inputRef}
                          placeholder="search location ..."
                          onChange={(e) => setSearchText(e.target.value)}
                          onKeyDown={(e) => handleGetDataWeather(e)}
