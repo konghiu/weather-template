@@ -21,7 +21,7 @@ const SearchLocation = () => {
      }, []);
 
      const handleGetDataWeather = async (e, init) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && (searchText || init)) {
                inputRef.current.blur();
                setLoading(true);
                await fetch(
@@ -35,6 +35,7 @@ const SearchLocation = () => {
                               type: "CURRENT",
                               payload: res,
                          });
+                         if (res.cod === "404") return;
                          fetch(
                               `${api.base}forecast?lat=${res.coord.lat}&lon=${res.coord.lon}&appid=${api.key}`
                          )
@@ -44,7 +45,8 @@ const SearchLocation = () => {
                                         type: "OTHERDAYS",
                                         payload: res,
                                    });
-                              });
+                              })
+                              .catch((err) => console.log(err.message));
 
                          //console.log(res.main.temp - 273.15);
                     })

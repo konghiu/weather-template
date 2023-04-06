@@ -53,53 +53,68 @@
 
 /* css for current temperature */
 #weather .weather__current-temperature > div:nth-child(1) h3 {
-     margin: 0.25rem 0;
+     text-align: end;
 }
-#weather .weather__current-temperature > div:nth-child(2) {
-     min-width: 200px;
+#weather .weather__current-temperature > div:nth-child(1) h2 {
+     font-size: 1rem;
 }
+#weather .weather__current-temperature > div:nth-child(1) {
+     margin-top: 1rem;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+}
+
 #weather .weather__current-temperature > div:nth-child(2) svg {
-     font-size: 200px;
-     /* width: 300px; */
+     font-size: 150px;
 }
 #weather .weather__current-temperature > div:nth-child(2) h1 {
      margin-top: 1rem;
 }
 #weather .weather__current-temperature > div:nth-child(3) h1 {
      font-weight: normal;
-     margin-bottom: 2rem;
 }
 #weather .weather__current-temperature > div:nth-child(3) {
      align-self: flex-end;
      font-size: 3rem;
 }
-#weather .weather__others {
-     display: flex;
-     justify-content: space-between;
-}
-#weather .weather__others > div {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: space-between;
-}
-#weather .weather__others > div > svg {
-     margin: 1rem 0;
-     font-size: 3rem;
-}
-
 @media only screen and (max-width: 500px) {
      #weather {
           padding: 2rem;
-          box-sizing: border-box;
+     }
+     #weather > div {
+          margin-top: 0;
+     }
+     #weather .weather__current-city {
+          flex-direction: column;
+     }
+     #weather .weather__current-city h3 {
+          margin-bottom: 0.5rem;
+     }
+
+     #weather .weather__current-temperature {
+          flex-direction: column-reverse;
+          align-items: center;
      }
      #weather .weather__current-temperature > div:nth-child(2) {
-          min-width: 120px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
      }
      #weather .weather__current-temperature > div:nth-child(2) svg {
-          font-size: 100px;
+          margin-bottom: 0.5rem;
+          font-size: 50px;
      }
      #weather .weather__current-temperature > div:nth-child(2) h2 {
+          font-size: 1rem;
+     }
+     #weather .weather__current-temperature > div:nth-child(3) {
+          align-self: center;
+          font-size: 2rem;
+     }
+     #weather .weather__current-city > h3 {
+          font-size: 1.25rem;
+     }
+     #weather .weather__current-city > div {
           font-size: 1rem;
      }
 }

@@ -1,0 +1,56 @@
+/* weather others  */
+#weather .weather__others {
+     height: 200px;
+     box-sizing: border-box;
+     position: relative;
+}
+#weather > .weather__others .slick-list {
+     overflow: hidden;
+}
+#weather > .weather__others .slick-list .slick-track[style] {
+     transform: none;
+}
+#weather .weather__others .slick-track > div {
+     display: inline-block;
+}
+#weather .weather__others .slick-track .slick-slide div div {
+     display: flex !important;
+     flex-direction: column;
+     align-items: center;
+}
+
+#weather .weather__others svg {
+     margin: 1rem 0;
+     font-size: 3rem;
+}
+
+#weather .weather__others > button {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     width: fit-content;
+     color: transparent;
+     background-color: transparent;
+     outline: none;
+     border: none;
+}
+#weather .weather__others > .slick-prev {
+     left: 0;
+}
+#weather .weather__others > .slick-next {
+     right: -1rem;
+}
+
+#weather .weather__others > button::after {
+     content: "\f053";
+     font-family: "Font Awesome \6 Free";
+     font-weight: 900;
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 100%;
+     color: white;
+     font-size: 2rem;
+}
+@media only screen and (max-width: 500px) {
+}

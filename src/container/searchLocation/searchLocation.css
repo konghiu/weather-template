@@ -42,4 +42,7 @@
      #searchLocation .searchLocation__input {
           width: 300px;
      }
+     #searchLocation .searchLocation__input input {
+          font-size: 14px;
+     }
 }
