@@ -41,8 +41,17 @@
      right: -1rem;
 }
 
+/* css for weather others item */
+#weather .weather__others-date {
+     font-size: 14px;
+}
+
+#weather .weather__others > button:nth-child(1):after {
+     content: "<";
+     left: 5px;
+}
 #weather .weather__others > button::after {
-     content: "\f053";
+     content: ">";
      font-family: "Font Awesome \6 Free";
      font-weight: 900;
      position: absolute;

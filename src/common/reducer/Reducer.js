@@ -17,13 +17,11 @@ const reducer = (state, action) => {
                          otherDaysTemperature: null,
                     };
                const day = `
-               ${
-                    date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
-               } / ${
+               ${date.getFullYear()}/${
                     date.getMonth() < 10
                          ? "0" + (date.getMonth() + 1)
                          : date.getMonth() + 1
-               } / ${date.getFullYear()}
+               }/${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}
                `;
 
                const currentState = {
@@ -49,10 +47,27 @@ const reducer = (state, action) => {
                     currentTemperature: currentState,
                };
           case "OTHERDAYS":
-               console.log(payload.list.map((item) => item));
+               const othersTemperature = payload.list.map((item) => {
+                    const timeDate = item.dt_txt;
+                    const hours = timeDate.slice(11, 13);
+                    const DMY = timeDate.slice(0, 10).replaceAll("-", "/");
+                    const dateWeek =
+                         date.getDay() +
+                         Number(timeDate.slice(8, 10)) -
+                         date.getDate();
+
+                    return {
+                         temp: (item.main?.temp - 273).toFixed(0),
+                         hours,
+                         DMY,
+                         icon: item.weather?.at(0)?.icon,
+                         dayInWeek: dateWeek < 8 ? dateWeek : dateWeek - 7,
+                    };
+               });
+               console.log(payload.list.map((item) => item.dt_txt));
                return {
                     ...state,
-                    otherDaysTemperature: payload.list,
+                    otherDaysTemperature: othersTemperature,
                };
 
           default:
