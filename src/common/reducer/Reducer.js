@@ -23,7 +23,6 @@ const reducer = (state, action) => {
                          : date.getMonth() + 1
                }/${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}
                `;
-
                const currentState = {
                     cod: payload.cod,
                     nation: payload.sys?.country,
@@ -61,10 +60,9 @@ const reducer = (state, action) => {
                          hours,
                          DMY,
                          icon: item.weather?.at(0)?.icon,
-                         dayInWeek: dateWeek < 8 ? dateWeek : dateWeek - 7,
+                         dayInWeek: dateWeek < 7 ? dateWeek : dateWeek - 6,
                     };
                });
-               console.log(payload.list.map((item) => item.dt_txt));
                return {
                     ...state,
                     otherDaysTemperature: othersTemperature,
