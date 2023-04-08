@@ -30,7 +30,7 @@ const WeatherOthers = ({ otherDaysTemperature }) => {
                          {otherDaysTemperature.map((item, i) => (
                               <div key={i} className="weather__others-item">
                                    <p className="weather__others-day">
-                                        {dayInWeek[item.dayInWeek].slice(0, 3)}
+                                        {dayInWeek[item.dayInWeek]?.slice(0, 3)}
                                    </p>
                                    <p className="weather__others-date">
                                         {item.DMY}
